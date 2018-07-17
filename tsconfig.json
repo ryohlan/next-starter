@@ -13,7 +13,11 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "baseUrl": ".",
+    "outDir": "compiled",
     "typeRoots": [
       "./node_modules/@types"
     ],
