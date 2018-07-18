@@ -1,3 +1,4 @@
-import React from "react";
+import React from 'react'
+import { PageTitle } from '../components/atom/PageTitle'
 
-export default () => <h1>Hello World</h1>;
+export default () => <PageTitle>Hello World</PageTitle>
