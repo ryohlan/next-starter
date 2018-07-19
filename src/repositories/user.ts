@@ -1,4 +1,6 @@
 export const get: () => Promise<{ user: any }> = () =>
   new Promise(resolve => {
-    resolve({ user: { name: 'SampleName' } })
+    setTimeout(() => {
+      resolve({ user: { name: 'SampleName' } })
+    }, 2000)
   })

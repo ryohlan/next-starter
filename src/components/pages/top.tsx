@@ -1,8 +1,9 @@
 import React from 'react'
 import { PageTitle } from 'src/components/atom/PageTitle'
 import { Link, Router } from 'src/routing'
+import * as UserActions from 'src/reducers/user/actions'
 
-export class Page extends React.Component {
+export class Page extends React.Component<any> {
   static getInitialProps(a) {
     console.log(a)
   }
@@ -19,7 +20,7 @@ export class Page extends React.Component {
           <a>User1</a>
         </Link>
         <br />
-        <button onClick={() => Router.pushRoute('user', { id: 2 })}>User2</button>
+        <button onClick={() => this.props.store.dispatch(UserActions.fetchUser.started({}))}>fetchUser</button>
       </>
     )
   }

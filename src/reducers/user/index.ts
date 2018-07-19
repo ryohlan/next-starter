@@ -4,10 +4,13 @@ import * as Actions from './actions'
 
 export interface State {
   name: string
+  isFetchingUser: boolean
+  fetchUserErrorMessage?: string
 }
 
 export const initial: State = {
-  name: ''
+  name: '',
+  isFetchingUser: false
 }
 
 export const reducer = (state: State = initial, action: Action): State => {
@@ -15,6 +18,29 @@ export const reducer = (state: State = initial, action: Action): State => {
     return {
       ...state,
       name: action.payload.name
+    }
+  }
+
+  if (isType(action, Actions.fetchUser.started)) {
+    return {
+      ...state,
+      isFetchingUser: true
+    }
+  }
+
+  if (isType(action, Actions.fetchUser.done)) {
+    return {
+      ...state,
+      isFetchingUser: false,
+      name: action.payload.result.user.name
+    }
+  }
+
+  if (isType(action, Actions.fetchUser.failed)) {
+    return {
+      ...state,
+      isFetchingUser: false,
+      fetchUserErrorMessage: action.payload.error.message
     }
   }
 
