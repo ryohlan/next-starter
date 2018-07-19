@@ -29,6 +29,7 @@ export const reducer = (state: State = initial, action: Action): State => {
   }
 
   if (isType(action, Actions.fetchUser.done)) {
+    console.log(action)
     return {
       ...state,
       isFetchingUser: false,

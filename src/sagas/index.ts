@@ -4,8 +4,8 @@ import * as UserActions from 'src/reducers/user/actions'
 
 function* fetchUser(action = UserActions.fetchUser.started({ userId: '' })) {
   try {
-    const user = yield call(UserRepository.get, action.payload.userId)
-    yield put(UserActions.fetchUser.done({ params: action.payload, result: { user: { name: user.name } } }))
+    const { user } = yield call(UserRepository.get, action.payload.userId)
+    yield put(UserActions.fetchUser.done({ params: action.payload, result: { user } }))
   } catch (e) {
     yield put(UserActions.fetchUser.failed({ params: action.payload, error: { message: 'fetchError' } }))
   }
