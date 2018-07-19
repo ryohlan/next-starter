@@ -1,4 +1,3 @@
-import React from 'react'
-import { PageTitle } from 'src/components/atom/PageTitle'
+import { Page } from 'src/components/pages/top'
 
-export default () => <PageTitle>Hello World</PageTitle>
+export default Page
