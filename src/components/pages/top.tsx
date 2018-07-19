@@ -1,6 +1,6 @@
 import React from 'react'
 import { PageTitle } from 'src/components/atom/PageTitle'
-import Link from 'next/link'
+import { Link, Router } from 'src/routing'
 
 export class Page extends React.Component {
   static getInitialProps(a) {
@@ -11,9 +11,15 @@ export class Page extends React.Component {
     return (
       <>
         <PageTitle>HelloWorld</PageTitle>
-        <Link href="/second">
+        <Link route="second">
           <a>Second</a>
         </Link>
+        <br />
+        <Link route="user" params={{ id: 1 }}>
+          <a>User1</a>
+        </Link>
+        <br />
+        <button onClick={() => Router.pushRoute('user', { id: 2 })}>User2</button>
       </>
     )
   }
