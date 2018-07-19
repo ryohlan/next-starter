@@ -7,7 +7,7 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "NODE_ENV=production node production-server/index.js",
     "ts-watch": "tsc -w",
-    "tsc": "tsc --project tsconfig.server.json"
+    "tsc": "tsc"
   },
   "license": "ISC",
   "dependencies": {
@@ -16,6 +16,7 @@
     "@types/react": "^16.4.6",
     "@types/react-redux": "^6.0.4",
     "@zeit/next-typescript": "^1.1.0",
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.5.1",
     "isomorphic-fetch": "^2.2.1",
     "next": "^6.1.1",
@@ -25,6 +26,7 @@
     "react-redux": "^5.0.7",
     "recompose": "^0.27.1",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
     "styled-components": "^3.3.3",
     "ts-node": "^7.0.0",
