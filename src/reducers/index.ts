@@ -1,4 +1,4 @@
-import { reducer as UserReducer, State as UserState } from './user'
+import { reducer as UserReducer, State as UserState } from 'src/reducers/user'
 
 export interface ReduxState {
   User: UserState

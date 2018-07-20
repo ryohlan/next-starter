@@ -1,6 +1,6 @@
 import { isType } from 'typescript-fsa'
 import { Action } from 'redux'
-import * as Actions from './actions'
+import * as Actions from 'src/reducers/user/actions'
 
 export interface State {
   name: string

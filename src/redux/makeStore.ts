@@ -1,5 +1,5 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import { reducers } from '../reducers'
+import { reducers } from 'src/reducers'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import sagas from 'src/sagas'
