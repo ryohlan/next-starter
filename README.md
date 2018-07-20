@@ -1,21 +1,44 @@
 # Next.js project starter
 
-## Get started
+Following setups are included.
+- Next.js
+- TypeScript
+- Redux
+- Redux-saga
+- TypeScript-fsa
+- Redux-devtools
+- Firebase Hosting(Functions)
+- Styled-Components
+- next-routes
 
-clone this repository
+# Get started
 
-```
-git clone git@github.com:ryohlan/next-starter.git
-```
-
-install packages
-
-```
-npm i
-```
-
-start development server
+## start development server
 
 ```
 npm run dev
+```
+
+## start production server
+
+```
+npm start
+```
+
+## deploy to Firebase hosting
+update YOUR_PROJECT_NAME at .firebaserc
+
+```
+{
+  "projects": {
+    "default": "YOUR_PROJECT_NAME"
+  }
+}
+
+```
+
+deploy
+
+```
+npm run deploy
 ```
