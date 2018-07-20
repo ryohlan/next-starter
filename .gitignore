@@ -1,7 +1,5 @@
 node_modules/
-
 .vscode
-
 .next
-
 dist/
+production-server/

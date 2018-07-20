@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production node production-server/index.js",
+    "start": "NODE_ENV=production next build && tsc --project tsconfig.server.json && node production-server/server/index.js",
     "build-functions": "NODE_ENV=production next build && tsc --project tsconfig.firebase.json",
     "ts-watch": "tsc -w",
     "tsc": "tsc",
