@@ -10,6 +10,7 @@
     "ts-watch": "tsc -w",
     "tsc": "tsc",
     "install-deps": "cp ./package* dist && cd dist && npm i",
+    "cp-static": "cp -r static dist/static",
     "deploy": "npm run build-functions && npm run install-deps && firebase deploy"
   },
   "license": "ISC",
