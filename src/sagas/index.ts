@@ -2,7 +2,9 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import * as UserRepository from 'src/repositories/user'
 import * as UserActions from 'src/reducers/user/actions'
 
-function* fetchUser(action = UserActions.fetchUser.started({ userId: '' })) {
+function* fetchUser(action) {
+  if (!UserActions.fetchUser.started.match(action)) return
+
   try {
     const { user } = yield call(UserRepository.get, action.payload.userId)
     yield put(UserActions.fetchUser.done({ params: action.payload, result: { user } }))
@@ -12,7 +14,7 @@ function* fetchUser(action = UserActions.fetchUser.started({ userId: '' })) {
 }
 
 function* sagas() {
-  yield takeEvery<any>(UserActions.fetchUser.started.type, fetchUser)
+  yield takeEvery(UserActions.fetchUser.started.type, fetchUser)
 }
 
 export default sagas
