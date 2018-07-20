@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
 import * as next from 'next'
-import { routes } from '../src/routing'
+import { routes } from 'src/routing'
 
 const port = (process.env.PORT && parseInt(process.env.PORT, 10)) || 3000
 const dev = process.env.NODE_ENV !== 'production'
