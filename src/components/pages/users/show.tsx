@@ -5,14 +5,4 @@ interface Props {
   userId: string
 }
 
-export class Page extends React.Component<Props> {
-  static async getInitialProps(props): Promise<Props> {
-    const { id } = props.query
-
-    return { userId: id }
-  }
-
-  render() {
-    return <PageTitle>User{this.props.userId}'s page</PageTitle>
-  }
-}
+export const Page = ({ userId }: Props) => <PageTitle>User{userId}'s page</PageTitle>
