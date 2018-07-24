@@ -21,7 +21,7 @@ export const initializer = App => {
 
     static async getInitialProps(context) {
       const reduxStore = getOrCreateStore()
-      context.ctx.reduxStore = reduxStore
+      context.ctx.store = reduxStore
 
       let appProps = {}
       if (App.getInitialProps) {
@@ -40,7 +40,7 @@ export const initializer = App => {
     }
 
     render() {
-      return <App {...this.props} reduxStore={this.reduxStore} />
+      return <App {...this.props} store={this.reduxStore} />
     }
   }
 }

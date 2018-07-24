@@ -19,7 +19,8 @@
     "baseUrl": ".",
     "outDir": "compiled",
     "typeRoots": [
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./typings"
     ],
     "lib": [
       "dom",
