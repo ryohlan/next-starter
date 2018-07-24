@@ -1,6 +1,6 @@
 import { reducer as UserReducer, State as UserState } from 'src/reducers/user'
 
-export interface ReduxState {
+export interface Store {
   User: UserState
 }
 
