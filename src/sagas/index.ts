@@ -1,20 +1,23 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import * as UserRepository from 'src/repositories/user'
-import * as UserActions from 'src/reducers/user/actions'
+import * as SignupActions from 'src/reducers/signup/actions'
+import { Firebase, auth } from 'src/repositories/firebase'
 
-function* fetchUser(action) {
-  if (!UserActions.fetchUser.started.match(action)) return
-
+function* signup(action) {
+  if (!SignupActions.signup.started.match(action)) return
   try {
-    const { user } = yield call(UserRepository.get, action.payload.userId)
-    yield put(UserActions.fetchUser.done({ params: action.payload, result: { user } }))
+    auth.createUserWithEmailAndPassword = auth.createUserWithEmailAndPassword.bind(auth)
+    const response = yield call(auth.createUserWithEmailAndPassword, action.payload.email, action.payload.password)
+    yield put(SignupActions.signup.done({ params: action.payload, result: {} }))
+    const idToken = response.getIdToken()
   } catch (e) {
-    yield put(UserActions.fetchUser.failed({ params: action.payload, error: { message: 'fetchError' } }))
+    yield put(
+      SignupActions.signup.failed({ params: action.payload, error: { message: 'Signup error. Please try again.' } })
+    )
   }
 }
 
 function* sagas() {
-  yield takeEvery(UserActions.fetchUser.started.type, fetchUser)
+  yield takeEvery(SignupActions.signup.started.type, signup)
 }
 
 export default sagas

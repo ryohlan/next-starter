@@ -11,7 +11,9 @@
     "tsc": "tsc",
     "install-deps": "cp ./package* dist && cd dist && npm i",
     "cp-static": "cp -r static dist/static",
-    "deploy": "npm run build-functions && npm run install-deps && firebase deploy"
+    "deploy": "npm run build-functions && npm run install-deps && firebase deploy",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "license": "ISC",
   "dependencies": {
@@ -24,6 +26,9 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "firebase": "^5.3.0",
     "firebase-admin": "^5.13.0",
     "firebase-functions": "^1.1.0",
     "isomorphic-fetch": "^2.2.1",
@@ -40,7 +45,9 @@
     "styled-components": "^3.3.3",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2",
-    "typescript-fsa": "^3.0.0-beta-2"
+    "typescript-fsa": "^3.0.0-beta-2",
+    "universal-cookie": "^2.2.0",
+    "webpack": "^4.16.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.0.0-beta.54"
