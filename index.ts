@@ -5,8 +5,8 @@
 import * as functions from 'firebase-functions'
 import { routes } from './src/routing'
 import * as express from 'express'
-import * as FirebaseAdmin from 'firebase-admin'
 import * as bodyParser from 'body-parser'
+import * as firebaseAdmin from 'firebase-admin'
 
 const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
@@ -28,15 +28,51 @@ exapp.use(
 
 exapp.use(bodyParser.json())
 
-exapp.post('/signup', (req, res) => {
-  const ap = FirebaseAdmin.initializeApp()
-  ap.auth()
-    .createUser({
-      email: req.body.email,
-      password: req.body.password
+exapp.use((_, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://next-starter.firebaseapp.com')
+  res.header('Access-Control-Allow-Credentials', 'true')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
+
+const admin = firebaseAdmin.initializeApp()
+
+exapp.post('/sessionLogin', (req, res) => {
+  const idToken = req.body.idToken
+  const expiresIn = 60 * 60 * 24 * 5 * 1000
+  admin
+    .auth()
+    .createSessionCookie(idToken, { expiresIn })
+    .then(sessionCookie => {
+      const options = {
+        maxAge: expiresIn,
+        httpOnly: true,
+        secure: true
+      }
+      res.cookie('session', sessionCookie, options).end()
     })
-    .then(() => res.send('success'))
-    .catch(e => res.send(e.message))
+    .catch(() => {
+      res
+        .status(401)
+        .send('UNAUTHORIZED REQUEST!')
+        .end()
+    })
+})
+
+exapp.post('login', (req, res) => {
+  const sessionCookie = req.cookies.session || ''
+  admin
+    .auth()
+    .verifySessionCookie(sessionCookie, true)
+    .then(decodedClaims => {
+      admin
+        .auth()
+        .getUser(decodedClaims.uid)
+        .then(user => res.send({ user }).end())
+    })
+    .catch(error => {
+      res.status(401).send({ error: 'PLEASE LOGIN OR SIGNUP', message: error.message })
+    })
 })
 
 export const api = functions.https.onRequest(exapp)

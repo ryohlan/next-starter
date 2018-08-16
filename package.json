@@ -11,7 +11,8 @@
     "tsc": "tsc",
     "install-deps": "cp ./package* dist && cd dist && npm i",
     "cp-static": "cp -r static dist/static",
-    "deploy": "npm run build-functions && npm run install-deps && firebase deploy",
+    "deploy": "yarn build-functions && yarn install-deps && yarn cp-static && firebase deploy",
+    "serve": "yarn build-functions && yarn install-deps && firebase serve",
     "docz:dev": "docz dev",
     "docz:build": "docz build"
   },
@@ -26,6 +27,8 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "firebase": "^5.3.0",

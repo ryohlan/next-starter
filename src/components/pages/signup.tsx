@@ -6,7 +6,7 @@ import { setEmail, setPassword, signup } from 'src/reducers/signup/actions'
 export const Page = connect<
   { email: string; password: string; posting: boolean },
   { dispatch: Function },
-  { name: string },
+  {},
   Props,
   Store
 >(
